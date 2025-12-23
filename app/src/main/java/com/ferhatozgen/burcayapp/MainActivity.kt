@@ -20,7 +20,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Burç verilerini statik liste olarak oluşturuyoruz
         val burcListesi = listOf(
             Burc(
                 "koc", "Koç", "21 Mart - 20 Nisan", "Cesur ve enerjik", "Ateş",
@@ -93,7 +92,7 @@ class MainActivity : ComponentActivity() {
                 composable("splash_screen") {
                     SplashScreen(navController = navController)
                 }
-                // 2. Ana Menü (YENİ)
+                // 2. Ana Menü
                 composable("main_menu") {
                     MainMenuScreen(navController = navController)
                 }

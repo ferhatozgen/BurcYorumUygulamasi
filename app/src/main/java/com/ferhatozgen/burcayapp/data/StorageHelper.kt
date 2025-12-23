@@ -11,8 +11,7 @@ class StorageHelper(private val context: Context) {
 
     fun kaydet(yorum: BurcYorumu) {
         val json = gson.toJson(yorum)
-        // Her burç için ayrı dosya veya tek dosya olabilir. Basit olması için üzerine yazıyoruz.
-        // Gelişmiş versiyonda List<BurcYorumu> tutulur.
+
         val file = File(context.filesDir, "${yorum.burcId}_$fileName")
         file.writeText(json)
     }

@@ -1,5 +1,5 @@
 import java.util.Properties
-import java.io.FileInputStream // <--- 1. ÇÖZÜM: Buraya import ekledik
+import java.io.FileInputStream
 
 plugins {
     alias(libs.plugins.android.application)
@@ -7,29 +7,26 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
-// Local.properties dosyasını okuma işlemi
 val localProperties = Properties()
 val localPropertiesFile = rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {
-    // Import ettiğimiz için artık başına java.io yazmamıza gerek yok
     localProperties.load(FileInputStream(localPropertiesFile))
 }
 
 android {
     namespace = "com.ferhatozgen.burcayapp"
-    compileSdk = 34 // Not: release(36) bazen hata verebilir, genelde 34 veya 35 kullanılır. Hata alırsan burayı kontrol et.
+    compileSdk = 35 //
 
     defaultConfig {
         applicationId = "com.ferhatozgen.burcayapp"
         minSdk = 24
-        targetSdk = 34 // Burası da compileSdk ile uyumlu olmalı
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        // 2. ÇÖZÜM: İkinci defaultConfig bloğunu buraya taşıdık (Birleştirdik)
-        // Eğer local.properties içinde KEY yoksa hata vermemesi için boş kontrolü ekledim
+
         val apiKey = localProperties.getProperty("GEMINI_API_KEY") ?: ""
         buildConfigField("String", "GEMINI_API_KEY", "\"$apiKey\"")
     }
@@ -52,7 +49,6 @@ android {
         jvmTarget = "11"
     }
 
-    // 3. ÇÖZÜM: buildFeatures bloklarını birleştirdik
     buildFeatures {
         compose = true
         buildConfig = true
@@ -68,8 +64,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-
-    // Senin eklediklerin
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("androidx.compose.material:material-icons-extended:1.6.0")
     implementation("com.google.ai.client.generativeai:generativeai:0.2.0")

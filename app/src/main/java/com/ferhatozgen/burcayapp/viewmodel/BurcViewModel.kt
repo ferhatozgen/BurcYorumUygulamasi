@@ -54,8 +54,7 @@ class BurcViewModel(application: Application) : AndroidViewModel(application) {
     fun rastgeleBilgiGetir() {
         viewModelScope.launch {
             _yukleniyor.value = true
-            _rastgeleBilgi.value = "" // Önce temizle
-            // Gemini'ye kısa ve ilginç bir bilgi soruyoruz
+            _rastgeleBilgi.value = ""
             val bilgi = geminiHelper.yorumGetir("Astroloji", "hakkında şaşırtıcı, ilginç ve kısa bir bilgi")
             _rastgeleBilgi.value = bilgi
             _yukleniyor.value = false

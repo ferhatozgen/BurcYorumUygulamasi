@@ -32,14 +32,12 @@ import com.ferhatozgen.burcayapp.model.Burc
 import com.ferhatozgen.burcayapp.viewmodel.BurcViewModel
 import kotlinx.coroutines.delay
 
-// --- RENKLER ---
 val DarkBlue = Color(0xFF0D1B2A)
 val GoldColor = Color(0xFFFFD700)
 val PurpleMagic = Color(0xFF4B0082)
 val TextWhite = Color(0xFFE0E1DD)
 
 
-// --- ORTAK BİLEŞEN: PARŞÖMEN KUTUSU ---
 @Composable
 fun ParchmentCard(
     content: @Composable () -> Unit
@@ -96,7 +94,7 @@ fun SplashScreen(navController: NavController) {
     }
 }
 
-// --- YENİ ANA MENÜ ---
+// --- ANA MENÜ ---
 @Composable
 fun MainMenuScreen(navController: NavController) {
     Column(
@@ -159,7 +157,7 @@ fun MenuButton(text: String, icon: androidx.compose.ui.graphics.vector.ImageVect
     }
 }
 
-// --- BURÇ LİSTESİ (Sadece Yorum İçin) ---
+// --- BURÇ LİSTESİ  ---
 @Composable
 fun ZodiacListScreen(navController: NavController, viewModel: BurcViewModel, burcListesi: List<Burc>, isEncyclopedia: Boolean = false) {
     Column(
@@ -272,7 +270,7 @@ fun PredictionDetailScreen(navController: NavController, viewModel: BurcViewMode
             } else {
                 Text(
                     text = yorumMetni,
-                    color = InkColor, // Parşömen üstünde koyu renk yazı
+                    color = InkColor,
                     fontSize = 18.sp,
                     lineHeight = 26.sp,
                     fontStyle = androidx.compose.ui.text.font.FontStyle.Italic
